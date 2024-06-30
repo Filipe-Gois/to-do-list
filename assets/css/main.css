@@ -103,7 +103,7 @@ body {
 
 .tarefas-section {
   width: 67% !important;
-  height: max-content;
+  height: 100%;
   max-height: 10vh;
   overflow: auto;
 }
@@ -223,9 +223,21 @@ body {
   margin-top: 30px;
 }
 
-.btn-adicionar-tarefa {
+.btn-abrir-modal {
   width: 50px;
   height: 50px;
+  transition: 0.4s;
+}
+.btn-abrir-modal:hover {
+  opacity: 0.7;
+}
+
+.btn-adicionar-tarefa {
+  padding: 0 20px;
+  width: max-content;
+  max-width: 150px;
+  color: #FFF;
+  margin: 0;
 }
 
 .filtro-conteudo {
@@ -303,10 +315,88 @@ body {
   stroke: var(--tertiary-dark-to-primary-light);
 }
 
+.descricao-tarefa {
+  width: 100%;
+  height: 30vh;
+}
+
+#fade, #modal {
+  transition: 0.5s;
+  opacity: 1;
+  pointer-events: all;
+}
+
+#fade {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.6);
+  z-index: 5;
+}
+
+#modal {
+  position: fixed;
+  left: 50%;
+  top: 50%;
+  width: 75%;
+  height: 70%;
+  transform: translate(-50%, -50%);
+  z-index: 10;
+  background-color: var(--background-color-v2);
+  border-radius: 20px;
+  padding: 20px;
+  box-shadow: 4px 4px 4px 2px rgba(0, 0, 0, 0.3);
+}
+#modal form {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.modal-header {
+  display: flex;
+  justify-content: space-between;
+}
+.modal-header .modal-header--data, .modal-header .modal-header--nome {
+  display: flex;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  gap: 15px;
+}
+.modal-header svg {
+  fill: var(--tertiary-dark-to-primary-light);
+}
+.modal-header svg path {
+  fill: var(--secondary-dark-to-primary-light);
+  stroke: var(--secondary-dark-to-primary-light);
+}
+
+.modal-footer {
+  width: 100%;
+  display: flex;
+  justify-content: flex-end;
+  gap: 20px;
+}
+
+#fade.hide, #modal.hide {
+  opacity: 0;
+  pointer-events: none;
+}
+
+#modal.hide {
+  top: 0;
+}
+
 main {
   width: 85vw;
   height: 85vh;
-  background-color: var(--background-color-v2);
+  background-color: var(--background-color-v1);
   border-radius: 20px;
   display: flex;
   flex-direction: row;

@@ -1,0 +1,65 @@
+@use "../abstracts/_variables" as variables
+@use "../abstracts/_mixins" as mixins
+
+#fade,#modal
+    transition: .5s
+    opacity: 1
+    pointer-events: all
+
+#fade
+    position: fixed
+    top: 0
+    left: 0
+    width: 100%
+    height: 100%
+    background-color: rgba(0,0 ,0 ,0.6 )
+    z-index: 5
+
+#modal
+    position: fixed
+    left: 50%
+    top: 50%
+    width: 75%
+    height: 70%
+    //faz o modal centralizar
+    transform: translate(-50%, -50%)
+    z-index: 10
+
+    @include mixins.background-card-style()
+
+    form
+        width: 100%
+        height: 100%
+        display: flex
+        flex-direction: column
+        justify-content: space-between
+
+.modal-header
+    display: flex
+    justify-content: space-between
+
+    .modal-header--data,.modal-header--nome
+        display: flex
+        @include  mixins.flex-center()
+        gap: 15px
+
+    svg
+        fill: var(--tertiary-dark-to-primary-light)
+        path
+            // fill: #f00
+            // stroke: red
+            fill: var(--secondary-dark-to-primary-light)
+            stroke: var(--secondary-dark-to-primary-light)
+
+.modal-footer
+    width: 100%
+    display: flex
+    justify-content: flex-end
+    gap: 20px
+
+#fade.hide, #modal.hide
+    opacity: 0
+    pointer-events: none
+
+#modal.hide
+    top: 0
