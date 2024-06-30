@@ -1,14 +1,24 @@
 export class Tarefa {
   constructor(nome, descricao, data) {
+    if (
+      typeof nome !== "string" ||
+      typeof descricao !== "string" ||
+      !(data instanceof Date)
+    ) {
+      throw new Error("Parâmetros inválidos para a criação de Tarefa.");
+    }
+
     this.nome = nome;
     this.descricao = descricao;
     this.data = data;
     this.favoritada = false;
+    this.completa = false;
   }
-  favoritar() {
-    this.favoritada = true;
+  favoritarDesfavoritar() {
+    this.favoritada = !this.favoritada;
   }
-  desfavoritar() {
-    this.favoritada = false;
+
+  completarDescompletar() {
+    this.completa = !this.completa;
   }
 }

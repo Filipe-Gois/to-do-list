@@ -1,0 +1,20 @@
+{
+  "tarefas": [
+    {
+      "id": 1,
+      "nome": "Fazer compras",
+      "descricao": "",
+      "data": "",
+      "completed": false,
+      "favoritada": false
+    },
+    {
+      "id": 2,
+      "nome": "Estudar JavaScript",
+      "descricao": "",
+      "data": "",
+      "completed": true,
+      "favoritada": false
+    }
+  ]
+}
