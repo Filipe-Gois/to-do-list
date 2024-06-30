@@ -1,0 +1,76 @@
+@use "../abstracts/_variables" as variables
+@use "../abstracts/_mixins" as mixins
+
+.filtro-conteudo
+    width: 100%
+    display: flex
+    align-items: center
+    gap: 5px
+    cursor: pointer
+    padding: 0 10px
+    border-radius: 7px
+
+    &:hover
+        transition: ease-out 1s
+        background-color: rgba(variables.$secondary-color,0.1 )
+
+    svg
+        fill: var(--tertiary-dark-to-primary-light)
+        path
+            // fill: #f00
+            // stroke: red
+            fill: var(--tertiary-dark-to-primary-light)
+            stroke: var(--tertiary-dark-to-primary-light)
+
+        g
+            path
+            // fill: #f00
+                fill: var(--tertiary-dark-to-primary-light)
+
+    input[type="radio"]
+        display: none
+
+.tarefa-content-box
+    width: 100%
+    display: flex
+    align-items: center
+    background-color: rgba(variables.$secondary-color,0.2)
+    border-radius: 7px
+    padding: 0 10px
+
+.tarefa-content
+    width: 100%
+    display: flex
+    align-items: center
+    gap: 5px
+    cursor: pointer
+
+    input[type="checkbox"]
+        appearance: none
+        border-radius: 50%
+        width: 10px
+        height: 10px
+        border: 1px solid var(--tertiary-dark-to-primary-light)
+        transition: 0.3s all linear
+        cursor: pointer
+
+        &:checked
+            background-color: var(--tertiary-dark-to-primary-light)
+            border: none
+
+.tarefa-concluida
+    text-decoration: line-through
+    text-decoration-color: var(--tertiary-dark-to-primary-light)
+
+.favoritar-tarefa-content
+    @include mixins.flex-center()
+    cursor: pointer
+
+    svg
+        path
+            stroke: var(--tertiary-dark-to-primary-light)
+
+//adicionar caso a tarefa seja favoritada
+.tarefa-favoritada
+    fill: var(--tertiary-dark-to-primary-light)
+    stroke: var(--tertiary-dark-to-primary-light)

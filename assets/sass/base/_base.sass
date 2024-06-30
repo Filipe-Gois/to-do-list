@@ -1,0 +1,22 @@
+@use "../abstracts/_variables" as variables
+@use "../abstracts/_mixins" as mixins
+
+body
+    background: variables.$linear-gradient
+    width: 100vw
+    height: 100vh
+    @include mixins.flex-center()
+
+::-webkit-scrollbar
+    width: 7px
+
+::-webkit-scrollbar-track
+    background: transparent
+
+::-webkit-scrollbar-thumb
+    background: variables.$primary-color
+    border-radius: 20px
+    cursor: pointer
+
+::-webkit-scrollbar-thumb:hover
+    background: variables.$secondary-color

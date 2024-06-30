@@ -1,0 +1,57 @@
+
+@use "../abstracts/_variables" as variables
+@use "../abstracts/_mixins" as mixins
+
+.my-body
+    height: max-content
+
+.darkThemeBtn *
+    transition: all 0.3s
+
+.darkThemeBtn input
+    width: 0
+    height: max-content
+    visibility: hidden
+
+.darkThemeBtn label
+    // border: 1px solid #efefef
+    background: variables.$tertiary-color
+    border-radius: 50px
+    height: 50px
+    width: 50px
+    // margin: auto
+    display: flex
+    justify-content: center
+    align-items: center
+    position: relative
+    cursor: pointer
+
+    &:active
+        border-radius: 5px
+
+    & svg
+        position: absolute
+        width: 16px
+        transition: 0.3s
+        z-index: 1
+        fill: variables.$background-color-v2-dark
+
+    & svg.sun
+        width: 20px
+        opacity: 0
+        fill: variables.$background-color-v2-light
+
+    & svg.moon
+        opacity: 1
+
+.darkThemeBtn input:checked + label
+    background: variables.$quaternary-color
+
+.darkThemeBtn input:checked + label svg.sun
+    opacity: 1
+
+.darkThemeBtn input:checked + label svg.moon
+    opacity: 0
+
+.darkThemeBtn input:checked ~ span
+    background-color: #16174b

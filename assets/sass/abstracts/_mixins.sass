@@ -1,0 +1,41 @@
+@use "./_variables" as variables
+
+@mixin title-style()
+    font-size: variables.$font-title-size
+    font-family: variables.$font-title
+    color: var(--white-dark-to-secondary-light)
+    font-weight: 600
+
+@mixin sub-title-style()
+    font-size: variables.$font-sub-title-size
+    font-family: variables.$font-sub-title
+    color: var(--secondary-dark-to-primary-light)
+    font-weight: 500
+
+@mixin text-style()
+    font-size: variables.$font-text-size
+    font-family: variables.$font-text
+    color: var(--tertiary-dark-to-primary-light)
+    font-weight: 400
+
+@mixin flex-center($direction: row, $align-items: center)
+    display: flex
+    flex-direction: $direction
+    align-items: $align-items
+    justify-content: center
+
+@mixin background-card-style()
+    background-color: var(--background-color-v2)
+    border-radius: 20px
+    padding: 20px
+    box-shadow: 4px 4px 4px 2px rgba(0, 0, 0, 0.3)
+
+@mixin button-style()
+    @include flex-center()
+    width: 50px
+    height: 50px
+    border: none
+    border-radius: 50px
+    background: variables.$linear-gradient
+    align-self: flex-end
+    cursor: pointer

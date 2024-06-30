@@ -1,0 +1,27 @@
+@use "../abstracts/_variables" as variables
+@use "../abstracts/_mixins" as mixins
+
+.card
+    display: flex
+    flex-direction: column
+    width: 30%
+    height: 100%
+    max-height: 100%
+    @include mixins.background-card-style()
+
+.uteis-content
+    width: 100%
+    height: max-content
+    display: flex
+    justify-content: space-between
+    align-items: flex-end
+
+    .link-github
+        width: 55px
+        height: 55px
+        svg
+            path
+                fill: var(--tertiary-dark-to-primary-light)
+
+.filtros
+    justify-content: space-between

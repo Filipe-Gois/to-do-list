@@ -1,0 +1,16 @@
+@use "../abstracts/_variables" as variables
+@use "../abstracts/_mixins" as mixins
+body
+    font-family: variables.$font-stack
+    line-height: 1.6
+
+.titulo
+    @include mixins.title-style()
+    span
+        color: var(--primary-dark-to-primary-light)
+
+.sub-titulo
+    @include mixins.sub-title-style()
+
+.texto
+    @include mixins.text-style()
