@@ -46,6 +46,5 @@ const adicionarTarefa = async () => {
   }
 };
 
-const t1 = new Tarefa("sla", "sakjhdasd", "14/01/2007");
-t1.favoritar();
-console.log(t1);
+const t1 = new Tarefa("sla", "sakjhdasd", new Date());
+console.log(t1.set);
