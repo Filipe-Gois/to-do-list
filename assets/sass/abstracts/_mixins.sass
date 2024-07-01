@@ -39,3 +39,12 @@
     background: variables.$linear-gradient
     align-self: flex-end
     cursor: pointer
+
+@mixin input-style()
+    border: none
+    background-color: transparent
+    outline: none
+    width: max-content
+    color: var(--tertiary-dark-to-primary-light)
+    &::placeholder
+        color: var(--tertiary-dark-to-primary-light)

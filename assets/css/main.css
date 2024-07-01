@@ -1,3 +1,4 @@
+@charset "UTF-8";
 @font-face {
   font-family: "Jost";
   src: url("../fonts/Jost/Jost-VariableFont_wght.ttf");
@@ -277,12 +278,12 @@ body {
   width: 100%;
   display: flex;
   align-items: center;
-  gap: 5px;
+  gap: 10px;
   cursor: pointer;
 }
 .tarefa-content input[type=checkbox] {
   appearance: none;
-  border-radius: 50%;
+  border-radius: 100%;
   width: 10px;
   height: 10px;
   border: 1px solid var(--tertiary-dark-to-primary-light);
@@ -306,18 +307,106 @@ body {
   justify-content: center;
   cursor: pointer;
 }
+.favoritar-tarefa-content svg {
+  fill: transparent;
+}
 .favoritar-tarefa-content svg path {
   stroke: var(--tertiary-dark-to-primary-light);
 }
 
 .tarefa-favoritada {
-  fill: var(--tertiary-dark-to-primary-light);
+  fill: var(--tertiary-dark-to-primary-light) !important;
   stroke: var(--tertiary-dark-to-primary-light);
 }
 
 .descricao-tarefa {
   width: 100%;
   height: 30vh;
+}
+
+.modal-header label {
+  cursor: pointer;
+}
+.modal-header label input {
+  border: none;
+  background-color: transparent;
+  outline: none;
+  width: max-content;
+  color: var(--tertiary-dark-to-primary-light);
+  max-width: 230px;
+}
+.modal-header label input::placeholder {
+  color: var(--tertiary-dark-to-primary-light);
+}
+.modal-header label #modal-input--nome {
+  max-width: 180px;
+}
+
+.modal-header--nome svg {
+  fill: var(--tertiary-dark-to-primary-light);
+}
+
+.modal-header--svg-nome {
+  background-color: var(--secondary-dark-to-primary-light);
+  color: #FFF;
+  border-radius: 50%;
+  padding: 7px;
+}
+
+.modal-body {
+  background-color: var(--gray-dark-to-secondary-light);
+  width: 100%;
+  height: 60%;
+  border-radius: 7px;
+  padding: 15px;
+}
+.modal-body .modal-input--descricao {
+  width: 100% !important;
+  height: 100%;
+  border: none;
+  background-color: transparent;
+  outline: none;
+  width: max-content;
+  color: var(--tertiary-dark-to-primary-light);
+  font-size: 30px;
+  font-family: "Roboto";
+  color: var(--secondary-dark-to-primary-light);
+  font-weight: 500;
+  resize: none;
+}
+.modal-body .modal-input--descricao::placeholder {
+  color: var(--tertiary-dark-to-primary-light);
+}
+
+/* Estilizando o ícone do calendário */
+input[type=date]::-webkit-calendar-picker-indicator {
+  background-color: var(--secondary-dark-to-primary-light);
+  color: #FFF !important;
+  border-radius: 50%;
+  padding: 7px;
+}
+
+input[type=date]::-webkit-inner-spin-button,
+input[type=date]::-webkit-clear-button {
+  display: none;
+}
+
+input[type=date]::-webkit-input-placeholder {
+  color: var(--secondary-dark-to-primary-light);
+}
+
+input[type=date]::-webkit-datetime-edit {
+  color: var(--secondary-dark-to-primary-light);
+}
+
+input[type=date]::-webkit-datetime-edit-fields-wrapper {
+  color: var(--secondary-dark-to-primary-light);
+}
+
+input[type=date]::-webkit-datetime-edit-month-field,
+input[type=date]::-webkit-datetime-edit-day-field,
+input[type=date]::-webkit-datetime-edit-year-field {
+  color: var(--secondary-dark-to-primary-light);
 }
 
 #fade, #modal {
@@ -367,13 +456,12 @@ body {
   flex-direction: row;
   align-items: center;
   justify-content: center;
-  gap: 15px;
 }
 .modal-header svg {
   fill: var(--tertiary-dark-to-primary-light);
 }
 .modal-header svg path {
-  fill: var(--secondary-dark-to-primary-light);
+  fill: #000;
   stroke: var(--secondary-dark-to-primary-light);
 }
 
@@ -422,6 +510,7 @@ header {
   --tertiary-dark-to-primary-light: #AEADC3;
   --quaternary-color: #6138F0;
   --white-dark-to-secondary-light: #fff;
+  --gray-dark-to-secondary-light: rgba(223,224,251,0.3 );
   --linear-gradient: linear-gradient(to bottom right, #9698E0, #6138F0);
   --font-stack: "Helvetica, Arial, sans-serif";
   --font-title: "Jost";
@@ -439,6 +528,7 @@ header {
   --secondary-dark-to-primary-light: #6138F0;
   --tertiary-dark-to-primary-light: #6138F0;
   --white-dark-to-secondary-light: #9698E0;
+  --gray-dark-to-secondary-light: rgba(150,152,224,0.3 );
 }
 
 /*# sourceMappingURL=main.css.map */

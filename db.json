@@ -5,7 +5,7 @@
       "nome": "Fazer compras",
       "descricao": "",
       "data": "",
-      "completed": false,
+      "completa": false,
       "favoritada": false
     },
     {
@@ -13,8 +13,16 @@
       "nome": "Estudar JavaScript",
       "descricao": "",
       "data": "",
-      "completed": true,
-      "favoritada": false
+      "completa": true,
+      "favoritada": true
+    },
+    {
+      "id": 2,
+      "nome": "Estudar JavaScript",
+      "descricao": "",
+      "data": "",
+      "completa": true,
+      "favoritada": true
     }
   ]
 }

@@ -42,12 +42,12 @@
     width: 100%
     display: flex
     align-items: center
-    gap: 5px
+    gap: 10px
     cursor: pointer
 
     input[type="checkbox"]
         appearance: none
-        border-radius: 50%
+        border-radius: 100%
         width: 10px
         height: 10px
         border: 1px solid var(--tertiary-dark-to-primary-light)
@@ -67,15 +67,75 @@
     cursor: pointer
 
     svg
+        fill: transparent
         path
             stroke: var(--tertiary-dark-to-primary-light)
 
 //adicionar caso a tarefa seja favoritada
 .tarefa-favoritada
-    fill: var(--tertiary-dark-to-primary-light)
+    fill: var(--tertiary-dark-to-primary-light) !important
     stroke: var(--tertiary-dark-to-primary-light)
-
 
 .descricao-tarefa
     width: 100%
     height: 30vh
+
+.modal-header
+    label
+        cursor: pointer
+        input
+            @include mixins.input-style()
+            max-width: 230px
+
+        #modal-input--nome
+            max-width: 180px
+
+.modal-header--nome
+
+    svg
+        fill: var(--tertiary-dark-to-primary-light)
+
+.modal-header--svg-nome
+    background-color: var(--secondary-dark-to-primary-light)
+    color: #FFF
+    border-radius: 50%
+    padding: 7px
+
+.modal-body
+    background-color: var(--gray-dark-to-secondary-light)
+    width: 100%
+    height: 60%
+    border-radius: 7px
+    padding: 15px
+    .modal-input--descricao
+        width: 100% !important
+        height: 100%
+        @include mixins.input-style()
+        @include mixins.sub-title-style()
+        resize: none
+
+/* Estilizando o ícone do calendário */
+input[type="date"]::-webkit-calendar-picker-indicator
+    background-color: var(--secondary-dark-to-primary-light)
+    color: #FFF !important
+    border-radius: 50%
+    padding: 7px
+
+input[type="date"]::-webkit-inner-spin-button,
+input[type="date"]::-webkit-clear-button
+    display: none
+
+input[type="date"]::-webkit-input-placeholder
+    color: var(--secondary-dark-to-primary-light)
+
+input[type="date"]::-webkit-datetime-edit
+
+    color: var(--secondary-dark-to-primary-light)
+input[type="date"]::-webkit-datetime-edit-fields-wrapper
+
+    color: var(--secondary-dark-to-primary-light)
+input[type="date"]::-webkit-datetime-edit-month-field,
+input[type="date"]::-webkit-datetime-edit-day-field,
+input[type="date"]::-webkit-datetime-edit-year-field
+
+    color: var(--secondary-dark-to-primary-light)
