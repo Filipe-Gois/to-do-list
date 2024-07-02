@@ -1,13 +1,17 @@
+// import { DataDbParaView } from "../utils/stringFunctions";
+
 export class Tarefa {
   constructor(nome, descricao, data) {
-    if (
-      typeof nome !== "string" ||
-      typeof descricao !== "string" ||
-      !(data instanceof Date)
-    ) {
-      throw new Error("Parâmetros inválidos para a criação de Tarefa.");
-    }
-
+    // // if (
+    // //   typeof nome !== "string" ||
+    // //   nome.trim() === "" ||
+    // //   typeof descricao !== "string" ||
+    // //   descricao.trim() === "" ||
+    // //   !(data instanceof Date)
+    // // ) {
+    // //   throw new Error("Parâmetros inválidos para a criação de Tarefa.");
+    // // }
+    this.id = Math.random().toString();
     this._nome = nome;
     this._descricao = descricao;
     this._data = data;
@@ -42,9 +46,9 @@ export class Tarefa {
   }
 
   set data(novaData) {
-    if (!(novaData instanceof Date)) {
-      throw new Error("Data deve ser uma instância de Date.");
-    }
+    // if (!(novaData instanceof Date)) {
+    //   throw new Error("Data deve ser uma instância de Date.");
+    // }
     this._data = novaData;
   }
 
