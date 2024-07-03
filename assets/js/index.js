@@ -217,7 +217,6 @@ const getSemana = (dataParametro = "") => {
   for (let mes = 0; mes <= dataTarefa.getMonth(); mes++) {
     if (mes === dataTarefa.getMonth()) {
       for (let dia = 0; dia < dataTarefa.getDate(); dia++) {
-        // console.log(`Dia: ${dia}`);
         diasPassados++;
       }
     } else {
@@ -239,7 +238,6 @@ const getSemana = (dataParametro = "") => {
       }
 
       for (let dia = 0; dia < diasDoMes; dia++) {
-        // console.log(`Dia: ${dia}`);
         diasPassados++;
       }
     }
