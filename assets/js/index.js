@@ -7,6 +7,9 @@ import { Tarefa } from "./classes/Tarefa.js";
 import Api from "./utils/api.js";
 
 let arrayTarefas = [];
+let tarefasFiltradas = [];
+
+let nomeFiltro = "todos";
 
 const putMethod = `PUT`;
 const getMethod = `GET`;
@@ -59,6 +62,9 @@ formTarefa.addEventListener("submit", (e) => {
 //lógica para alterar filtro de tarefas
 filtrosItens.map((filtro) => {
   filtro.addEventListener("click", (e) => {
+    e.preventDefault();
+    nomeFiltro = filtro.lastElementChild.textContent.toLowerCase();
+    anexarTarefasAoHtml();
     filtrosItens.map((item) => item.classList.remove(filtroSelecionadoClasse));
 
     filtro.classList.add(filtroSelecionadoClasse);
@@ -89,9 +95,24 @@ const limparCampos = () => {
   inputDescricaoTarefaModal.value = "";
 };
 
+const validarCampos = () => {
+  if (
+    inputDataTarefaModal.value.trim() === "" ||
+    inputNomeTarefaModal.value.trim() === ""
+  ) {
+    alert("Preencha os campos corretamente!");
+    return false;
+  }
+
+  return true;
+};
+
+const validarSeJaExisteTarefa = (nomeTarefa) =>
+  arrayTarefas.some((e) => e._nome === nomeTarefa);
+
 //----Requisições de api----
 
-const optionsRequisicao = (dados = {}, method = "POST") => {
+const optionsRequisicao = (dados = {}, method = postMethod) => {
   return { ...optionsRequisicaoBase, method, body: JSON.stringify(dados) };
 };
 
@@ -113,7 +134,6 @@ const chamarApi = async (id = undefined, dados = {}, method) => {
         response = await fetch(Api, optionsRequisicaoBase);
 
         return response;
-        break;
     }
   } catch (error) {
     console.log(error);
@@ -121,44 +141,148 @@ const chamarApi = async (id = undefined, dados = {}, method) => {
 };
 
 const cadastrarTarefa = async () => {
-  try {
-    let nomeTarefa = inputNomeTarefaModal.value;
-    let descricaoTarefa = inputDescricaoTarefaModal.value;
-    let dataTarefa = inputDataTarefaModal.value;
-    const novaTarefa = new Tarefa(nomeTarefa, descricaoTarefa, dataTarefa);
+  let nomeTarefa = inputNomeTarefaModal.value;
+  let descricaoTarefa = inputDescricaoTarefaModal.value;
+  let dataTarefa = inputDataTarefaModal.value;
+  const novaTarefa = new Tarefa(nomeTarefa, descricaoTarefa, dataTarefa);
 
-    alert("sucesso");
+  if (!validarCampos()) return;
 
-    chamarApi(novaTarefa.id, novaTarefa, postMethod);
-    limparCampos();
-  } catch (error) {
-    alert("erro");
-    console.log(error);
+  const existeTarefa = validarSeJaExisteTarefa(novaTarefa._nome);
+
+  if (existeTarefa) {
+    alert("ja existe uma tarefa com esse nome!");
+    return;
   }
+
+  if (novaTarefa._data < dataAtual()) {
+    alert("Informe uma data posterior ao dia de hoje!");
+    return;
+  }
+
+  chamarApi(novaTarefa.id, novaTarefa, postMethod);
+  alert("Tarefa cadastrada com sucesso!");
+  limparCampos();
 };
 
 const excluirTarefa = async (id) => {
-  try {
-    chamarApi(id, {}, deleteMethod);
-    limparCampos();
-    alert("sucesso");
-  } catch (error) {
-    console.log(error);
-  }
+  chamarApi(id, {}, deleteMethod);
+  limparCampos();
+  alert("Tarefa excluída com sucesso!");
 };
 
-const atualizarTarefa = async (id, dados) => {
-  try {
-    await chamarApi(id, dados, putMethod);
-    limparCampos();
-    alert("Sucesso!");
-  } catch (error) {
-    console.log(error);
+const atualizarTarefa = (id, dados) => {
+  if (!validarCampos()) return;
+
+  const tarefas = arrayTarefas.filter((e) => e._nome === dados._nome);
+
+  if (tarefas.length > 1) {
+    alert("ja existe uma tarefa com esse nome!");
+    return;
   }
+
+  if (dados._data < dataAtual()) {
+    alert("Informe uma data posterior ao dia de hoje!");
+    return;
+  }
+
+  chamarApi(id, dados, putMethod);
+  limparCampos();
+  alert("Tarefa atualizada com sucesso!");
+};
+
+const dataAtual = () => {
+  let dia = new Date().getDay();
+  let mes = new Date().getMonth() + 1;
+  const ano = new Date().getFullYear();
+
+  if (mes < 10 && mes.toString().length === 1) {
+    mes = `0${mes.toString()}`;
+  }
+  if (dia < 10 && dia.toString().length === 1) {
+    dia = `0${dia.toString()}`;
+  }
+
+  return `${ano}-${mes}-${dia}`;
+};
+
+//valida se é ano bissexto
+const anoBissexto = (data = "") => Number(data.split("-")[0]) % 4 === 0;
+
+const getSemana = (dataParametro = "") => {
+  let dataTarefa = new Date(dataParametro);
+  let diasDoMes = 31;
+  let diasPassados = 0;
+
+  for (let mes = 0; mes <= dataTarefa.getMonth(); mes++) {
+    if (mes === dataTarefa.getMonth()) {
+      for (let dia = 0; dia < dataTarefa.getDate(); dia++) {
+        // console.log(`Dia: ${dia}`);
+        diasPassados++;
+      }
+    } else {
+      switch (mes) {
+        case 4:
+        case 6:
+        case 9:
+        case 11:
+          diasDoMes = 30;
+          break;
+
+        case 2:
+          diasDoMes = 28;
+          break;
+
+        default:
+          diasDoMes = 31;
+          break;
+      }
+
+      for (let dia = 0; dia < diasDoMes; dia++) {
+        // console.log(`Dia: ${dia}`);
+        diasPassados++;
+      }
+    }
+  }
+
+  // if (anoBissexto(dataParametro)) {
+  //   diasPassados++;
+  // }
+
+  return Math.floor(diasPassados / 7);
+};
+
+const mesmaSemana = (data = "") => {
+  const dataAtual = new Date();
+  return getSemana(data) === getSemana(dataAtual);
 };
 
 const anexarTarefasAoHtml = () => {
-  arrayTarefas.map((e) => {
+  tarefasFiltradas = [];
+  tarefasFiltradas = arrayTarefas.filter((elemento) => {
+    switch (nomeFiltro.toLowerCase()) {
+      //tarefas favoritas
+      case "favoritos":
+        return elemento._favoritada;
+
+      //tarefas de hoje
+      case "hoje":
+        return elemento._data === dataAtual();
+
+      // tarefas da semana
+      case "semana":
+        return mesmaSemana(elemento._data);
+
+      //todos as tarefas
+      default:
+        return elemento;
+    }
+  });
+
+  //limpa a div que contém os elementos das tarefas
+  tarefasBox.innerHTML = "";
+
+  tarefasFiltradas.map((e) => {
     let tarefa = new Tarefa(e._nome, e._descricao, e._data);
     tarefa.id = e.id;
     tarefa._completa = e._completa;
@@ -247,14 +371,10 @@ const anexarTarefasAoHtml = () => {
       btnExcluirTarefa.classList.remove("hide-btn");
       btnAdicionarOuAtualizarTarefa.addEventListener("click", (evento) => {
         evento.preventDefault();
-        // if (btnExcluirTarefa.classList.contains("hide-btn")) {
-        //   cadastrarTarefa();
-        // } else {
-        tarefa.nome = inputNomeTarefaModal.value;
         tarefa.descricao = inputDescricaoTarefaModal.value;
         tarefa.data = inputDataTarefaModal.value;
+        tarefa.nome = inputNomeTarefaModal.value;
         atualizarTarefa(tarefa.id, tarefa);
-        // }
       });
     });
 
@@ -262,27 +382,21 @@ const anexarTarefasAoHtml = () => {
     tarefaFavoritada.addEventListener("click", async (evento) => {
       evento.preventDefault();
       evento.stopPropagation();
-      try {
-        tarefa.favoritarDesfavoritar();
-        //faz a requisição
-        chamarApi(tarefa.id, tarefa, putMethod);
-      } catch (error) {
-        console.log(error);
-      }
+
+      tarefa.favoritarDesfavoritar();
+      //faz a requisição
+      chamarApi(tarefa.id, tarefa, putMethod);
     });
 
     //altera o status da tarefa "completa/incompleta"
-    inputTarefa.addEventListener("click", async (evento) => {
+    inputTarefa.addEventListener("click", (evento) => {
       evento.preventDefault();
       evento.stopPropagation();
-      try {
-        //completa ou descompleta a tareda atraves do metodo da classe
-        tarefa.completarDescompletar();
 
-        chamarApi(tarefa.id, tarefa, putMethod);
-      } catch (error) {
-        console.log(error);
-      }
+      //completa ou descompleta a tareda atraves do metodo da classe
+      tarefa.completarDescompletar();
+
+      chamarApi(tarefa.id, tarefa, putMethod);
     });
   });
 };
@@ -297,6 +411,9 @@ const renderizarTarefas = async () => {
     }
     arrayTarefas = await response.json();
 
+    //ordena as tarefas por data
+    arrayTarefas.sort((a, b) => new Date(a._data) - new Date(b._data));
+
     anexarTarefasAoHtml();
   } catch (error) {
     alert("Erro ao buscar tarefas!");
@@ -307,3 +424,4 @@ const renderizarTarefas = async () => {
 
 //----------chamada de funções----------
 renderizarTarefas();
+// anexarTarefasAoHtml();
