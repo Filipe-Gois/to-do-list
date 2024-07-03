@@ -48,3 +48,21 @@
     color: var(--tertiary-dark-to-primary-light)
     &::placeholder
         color: var(--tertiary-dark-to-primary-light)
+
+@mixin responsivo($breakpoint)
+
+    @if $breakpoint == variables.$breakpoint-sm
+        @media (max-width: variables.$breakpoint-sm)
+            @content
+
+    @else if $breakpoint == variables.$breakpoint-md
+        @media (max-width: variables.$breakpoint-md)
+            @content
+
+    @else if $breakpoint == variables.$breakpoint-lg
+        @media (max-width: variables.$breakpoint-lg)
+            @content
+
+    @else if $breakpoint == variables.$breakpoint-xl
+        @media (max-width: variables.$breakpoint-xl)
+            @content

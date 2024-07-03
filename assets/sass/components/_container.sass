@@ -13,6 +13,11 @@
     display: flex
     justify-content: space-between
 
+    @include  mixins.responsivo(variables.$breakpoint-md)
+        flex-direction: column-reverse
+        align-items: center
+        gap: 3%
+
 .filtros-content, .tarefas-content
     gap: 20px
     @include mixins.flex-center(column, stretch)
@@ -29,8 +34,12 @@
 .tarefas-section
     width: 67% !important
     height: 100%
-    max-height: 10vh 
-    overflow: auto 
+    max-height: 10vh
+    overflow: auto
+
+    @include  mixins.responsivo(variables.$breakpoint-md)
+        width: 100% !important
+        height: 60% !important
 
 .tarefas-box
     width: 100%

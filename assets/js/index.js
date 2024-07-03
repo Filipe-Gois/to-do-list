@@ -1,26 +1,31 @@
 "use strict";
-//<div class="tarefas-box">
-// <!-- adicionados via js -->
-//HTML
 
 import { Tarefa } from "./classes/Tarefa.js";
 import Api from "./utils/api.js";
 
+// Arrays de tarefas
 let arrayTarefas = [];
 let tarefasFiltradas = [];
 
+// Filtro padrão
 let nomeFiltro = "todos";
 
-const putMethod = `PUT`;
-const getMethod = `GET`;
-const postMethod = `POST`;
-const deleteMethod = `DELETE`;
-let optionsRequisicaoBase = {
-  method: getMethod,
+const httpMethods = {
+  PUT: "PUT",
+  GET: "GET",
+  POST: "POST",
+  DELETE: "DELETE",
+};
+
+// Configuração base para requisições
+const optionsRequisicaoBase = {
+  method: httpMethods.GET,
   headers: {
     "Content-Type": "application/json",
   },
 };
+
+// Constantes do DOM
 const svgNamespace = "http://www.w3.org/2000/svg";
 const svgEstrela =
   "M9.79541 2.08281L11.1154 4.74456C11.2954 5.11506 11.7754 5.47056 12.1804 5.53806L14.5722 5.93931C16.1022 6.19656 16.4622 7.31556 15.3597 8.41956L13.4997 10.2946C13.1847 10.6118 13.0122 11.2246 13.1097 11.6633L13.6422 13.9846C14.0622 15.8221 13.0947 16.5323 11.4822 15.5723L9.23966 14.2336C8.83466 13.9921 8.16716 13.9921 7.75466 14.2336L5.51366 15.5723C3.90866 16.5323 2.93366 15.8138 3.35366 13.9846L3.88616 11.6633C3.98366 11.2246 3.81116 10.6118 3.49616 10.2946L1.63616 8.41956C0.541913 7.31481 0.894413 6.19656 2.42366 5.93931L4.81616 5.53806C5.21366 5.47056 5.69366 5.11506 5.87366 4.74456L7.19366 2.08281C7.91366 0.639063 9.08291 0.639063 9.79541 2.08281Z";
@@ -32,24 +37,22 @@ const filtroSelecionadoClasse = "filtro-selecionado";
 const filtrosItens = [...document.querySelectorAll(".filtro-conteudo")];
 const tarefasBox = document.querySelector(".tarefas-box");
 
-//modal
-let inputNomeTarefaModal = document.querySelector("#modal-input--nome");
-let inputDataTarefaModal = document.querySelector("#modal-input--data");
-let inputDescricaoTarefaModal = document.querySelector(
-  ".modal-input--descricao"
-);
-
 const formTarefa = document.querySelector("#form-tarefa");
-//pega o primeiro elemento filho
-
 const btnAdicionarOuAtualizarTarefa = document.querySelector("#btn-atualizar");
 const btnExcluirTarefa = document.querySelector("#btn-excluir");
+
+// Inputs do modal
+const inputNomeTarefaModal = document.querySelector("#modal-input--nome");
+const inputDataTarefaModal = document.querySelector("#modal-input--data");
+const inputDescricaoTarefaModal = document.querySelector(
+  ".modal-input--descricao"
+);
 
 //lógica para alterar tema
 document.addEventListener("DOMContentLoaded", () => {
   const themeSwitcher = document.querySelector(".my-body");
 
-  themeSwitcher.addEventListener("change", (e) => {
+  themeSwitcher.addEventListener("change", () => {
     document.body.classList.toggle("light-theme");
   });
 });
@@ -112,7 +115,7 @@ const validarSeJaExisteTarefa = (nomeTarefa) =>
 
 //----Requisições de api----
 
-const optionsRequisicao = (dados = {}, method = postMethod) => {
+const optionsRequisicao = (dados = {}, method = httpMethods.POST) => {
   return { ...optionsRequisicaoBase, method, body: JSON.stringify(dados) };
 };
 
@@ -120,12 +123,12 @@ const chamarApi = async (id = undefined, dados = {}, method) => {
   try {
     let response = [];
     switch (method) {
-      case postMethod:
+      case httpMethods.POST:
         await fetch(Api, optionsRequisicao(dados, method));
         break;
 
-      case putMethod:
-      case deleteMethod:
+      case httpMethods.PUT:
+      case httpMethods.DELETE:
         await fetch(`${Api}/${id}`, optionsRequisicao(dados, method));
 
         break;
@@ -160,19 +163,19 @@ const cadastrarTarefa = async () => {
     return;
   }
 
-  chamarApi(novaTarefa.id, novaTarefa, postMethod);
+  chamarApi(novaTarefa.id, novaTarefa, httpMethods.POST);
   alert("Tarefa cadastrada com sucesso!");
   limparCampos();
 };
 
 const excluirTarefa = async (id) => {
-  chamarApi(id, {}, deleteMethod);
+  chamarApi(id, {}, httpMethods.DELETE);
   limparCampos();
   alert("Tarefa excluída com sucesso!");
 };
 
 const atualizarTarefa = (id, dados) => {
-  if (!validarCampos()) return;
+  // if (!validarCampos()) return;
 
   const tarefas = arrayTarefas.filter((e) => e._nome === dados._nome);
 
@@ -186,28 +189,19 @@ const atualizarTarefa = (id, dados) => {
     return;
   }
 
-  chamarApi(id, dados, putMethod);
+  chamarApi(id, dados, httpMethods.PUT);
   limparCampos();
   alert("Tarefa atualizada com sucesso!");
 };
 
+// Obter data atual no formato YYYY-MM-DD
 const dataAtual = () => {
-  let dia = new Date().getDay();
-  let mes = new Date().getMonth() + 1;
-  const ano = new Date().getFullYear();
-
-  if (mes < 10 && mes.toString().length === 1) {
-    mes = `0${mes.toString()}`;
-  }
-  if (dia < 10 && dia.toString().length === 1) {
-    dia = `0${dia.toString()}`;
-  }
-
-  return `${ano}-${mes}-${dia}`;
+  const data = new Date();
+  return data.toISOString().split("T")[0];
 };
 
 //valida se é ano bissexto
-const anoBissexto = (data = "") => Number(data.split("-")[0]) % 4 === 0;
+const anoBissexto = (ano = 0) => ano % 4 === 0;
 
 const getSemana = (dataParametro = "") => {
   let dataTarefa = new Date(dataParametro);
@@ -243,17 +237,15 @@ const getSemana = (dataParametro = "") => {
     }
   }
 
-  // if (anoBissexto(dataParametro)) {
-  //   diasPassados++;
-  // }
+  if (anoBissexto(dataTarefa.getFullYear())) {
+    diasPassados++;
+  }
 
   return Math.floor(diasPassados / 7);
+  // return diasPassados;
 };
 
-const mesmaSemana = (data = "") => {
-  const dataAtual = new Date();
-  return getSemana(data) === getSemana(dataAtual);
-};
+const mesmaSemana = (data = "") => getSemana(data) === getSemana(new Date());
 
 const anexarTarefasAoHtml = () => {
   tarefasFiltradas = [];
@@ -273,7 +265,7 @@ const anexarTarefasAoHtml = () => {
 
       //todos as tarefas
       default:
-        return elemento;
+        return true;
     }
   });
 
@@ -383,7 +375,7 @@ const anexarTarefasAoHtml = () => {
 
       tarefa.favoritarDesfavoritar();
       //faz a requisição
-      chamarApi(tarefa.id, tarefa, putMethod);
+      chamarApi(tarefa.id, tarefa, httpMethods.PUT);
     });
 
     //altera o status da tarefa "completa/incompleta"
@@ -394,7 +386,7 @@ const anexarTarefasAoHtml = () => {
       //completa ou descompleta a tareda atraves do metodo da classe
       tarefa.completarDescompletar();
 
-      chamarApi(tarefa.id, tarefa, putMethod);
+      chamarApi(tarefa.id, tarefa, httpMethods.PUT);
     });
   });
 };
@@ -418,8 +410,4 @@ const renderizarTarefas = async () => {
   }
 };
 
-//-----------funcionalidades do modal----------
-
-//----------chamada de funções----------
 renderizarTarefas();
-// anexarTarefasAoHtml();

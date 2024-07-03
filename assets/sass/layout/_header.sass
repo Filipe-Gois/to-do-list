@@ -1,2 +1,8 @@
+@use "../abstracts/_variables" as variables
+@use "../abstracts/_mixins" as mixins
+
 header
     width: max-content
+    display: flex
+    @include  mixins.responsivo(variables.$breakpoint-md)
+        align-self: center
