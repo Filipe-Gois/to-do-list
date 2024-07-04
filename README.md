@@ -9,46 +9,30 @@
 
 <h1>To-Do List</h1>
 
-<p>Projeto desenvolvido para organizar tarefas diárias de forma eficiente e intuitiva.</p>
+<p>Este projeto de é uma aplicação web interativa que permite aos usuários gerenciar suas tarefas diárias de forma eficiente. Utilizando SASS para estilização, JavaScript Puro com Programação Orientada a Objetos para lógica e JSON Server para simular uma API com um CRUD completo, a aplicação oferece funcionalidades como cadastro, exclusão, visualização e atualização de tarefas, além de permitir a alternância entre temas Light e Dark, favoritar e completar tarefas e filtrar por diferentes critérios (favoritas, do dia, da semana e todas).</p>
 
-<h2>Descrição do Projeto</h2>
-
-<p>A To-Do List é uma aplicação web que permite aos usuários:</p>
-<ul>
-    <li>Gerenciar tarefas através de criação, edição, exclusão e marcação de conclusão de tarefas.</li>
-    <li>Favoritar tarefas importantes para fácil acesso.</li>
-    <li>Filtrar tarefas por categorias como todas as tarefas, favoritas, tarefas para hoje e tarefas para esta semana.</li>
-</ul>
-
-<h2>Funcionalidades Principais</h2>
+<h2>📋 Funcionalidades Principais</h2>
 <ol>
-    <li><strong>Cadastro de Tarefas:</strong>
+    <li><strong>Tarefas:</strong>
         <ul>
-            <li>Permite adicionar novas tarefas à lista usando JavaScript com POO.</li>
+            <li>Cadastrar, excluir, visualizar e atualizar tarefas.</li>
         </ul>
     </li>
-    <br/>
-    <li><strong>Edição e Exclusão:</strong>
-        <ul>
-            <li>Facilita a modificação e remoção de tarefas existentes de maneira intuitiva.</li>
-        </ul>
-    </li>
-    <br/>
     <li><strong>Marcação de Conclusão:</strong>
         <ul>
-            <li>Usuários podem marcar tarefas como concluídas, destacando-as visualmente.</li>
+            <li>Favoritar e completar tarefas.</li>
         </ul>
     </li>
     <br/>
-    <li><strong>Estilização Avançada com SASS:</strong>
+    <li><strong>Temas:</strong>
         <ul>
-            <li>Implementa SASS seguindo o padrão 7-1 para melhor organização e manutenção dos estilos.</li>
+            <li>Alternar entre temas Light e Dark.</li>
         </ul>
     </li>
+    <br/>
 </ol>
-<br/>
 
-<h2>Tecnologias Utilizadas</h2>
+<h2>🔧 Tecnologias Utilizadas</h2>
 
 <h3>Front-end:</h3>
 <ul>
