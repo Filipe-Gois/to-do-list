@@ -15,8 +15,7 @@
 
 <p>A To-Do List é uma aplicação web que permite aos usuários:</p>
 <ul>
-    <li>Gerenciar tarefas através de criação, edição, exclusão e marcação de conclusão.</li>
-    <li>Alternar entre modos de visualização claro e escuro.</li>
+    <li>Gerenciar tarefas através de criação, edição, exclusão e marcação de conclusão de tarefas.</li>
     <li>Favoritar tarefas importantes para fácil acesso.</li>
     <li>Filtrar tarefas por categorias como todas as tarefas, favoritas, tarefas para hoje e tarefas para esta semana.</li>
 </ul>
@@ -48,8 +47,6 @@
     </li>
 </ol>
 <br/>
-
-<p>A To-Do List foi projetada para oferecer simplicidade e funcionalidade, tornando a gestão de tarefas mais eficiente e agradável para os usuários.</p>
 
 <h2>Tecnologias Utilizadas</h2>
 
