@@ -9,12 +9,19 @@
     cursor: pointer
     padding: 0 10px
     border-radius: 7px
+    @include  mixins.responsivo(variables.$breakpoint-md)
+        padding: 0 5px
 
     &:hover
         transition: ease-out 1s
         background-color: rgba(variables.$secondary-color,0.1 )
 
     svg
+
+        @include  mixins.responsivo(variables.$breakpoint-md)
+            width: 16px
+            height: 16px
+
         fill: var(--tertiary-dark-to-primary-light)
         path
             // fill: #f00
@@ -53,6 +60,9 @@
         border: 1px solid var(--tertiary-dark-to-primary-light)
         transition: 0.3s all linear
         cursor: pointer
+        @include  mixins.responsivo(variables.$breakpoint-md)
+            width: 7px
+            height: 7px
 
         &:checked
             background-color: var(--tertiary-dark-to-primary-light)
@@ -67,6 +77,9 @@
     cursor: pointer
 
     svg
+        @include  mixins.responsivo(variables.$breakpoint-md)
+            width: 10px
+            height: 10px
         fill: transparent
         path
             stroke: var(--tertiary-dark-to-primary-light)
@@ -82,19 +95,34 @@
     height: 30vh
 
 .modal-header
+
+    @include  mixins.responsivo(variables.$breakpoint-md)
+        gap: 10px
+
     label
-        cursor: pointer
+
+        @include  mixins.responsivo(variables.$breakpoint-md)
+            // width: 100px
+            align-self: center
+            cursor: pointer
         input
             @include mixins.input-style()
             max-width: 230px
-
         #modal-input--nome
             max-width: 180px
+            @include  mixins.responsivo(variables.$breakpoint-md)
+                max-width: 50%
+                width: 50% !important
 
 .modal-header--nome
 
     svg
+        margin-left: 20px
         fill: var(--tertiary-dark-to-primary-light)
+        @include  mixins.responsivo(variables.$breakpoint-md)
+            width: 29px
+            height: 29px
+            margin-right: 10px
 
 .modal-header--svg-nome
     background-color: var(--secondary-dark-to-primary-light)

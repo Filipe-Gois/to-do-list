@@ -52,6 +52,11 @@ body {
   color: var(--white-dark-to-secondary-light);
   font-weight: 600;
 }
+@media (max-width: 768px) {
+  .titulo {
+    font-size: 30px;
+  }
+}
 .titulo span {
   color: var(--primary-dark-to-primary-light);
 }
@@ -62,12 +67,22 @@ body {
   color: var(--secondary-dark-to-primary-light);
   font-weight: 500;
 }
+@media (max-width: 768px) {
+  .sub-titulo {
+    font-size: 15px;
+  }
+}
 
 .texto {
   font-size: 20px;
   font-family: "Roboto";
   color: var(--tertiary-dark-to-primary-light);
   font-weight: 400;
+}
+@media (max-width: 768px) {
+  .texto {
+    font-size: 10px;
+  }
 }
 
 .container {
@@ -85,7 +100,7 @@ body {
 }
 @media (max-width: 768px) {
   .conteudo {
-    flex-direction: column-reverse;
+    flex-direction: column;
     align-items: center;
     gap: 3%;
   }
@@ -97,6 +112,11 @@ body {
   flex-direction: column;
   align-items: stretch;
   justify-content: center;
+}
+@media (max-width: 768px) {
+  .filtros-content, .tarefas-content {
+    gap: 10px;
+  }
 }
 
 .filtros-content-box, .tarefas-content-box {
@@ -160,6 +180,18 @@ body {
   width: 55px;
   height: 55px;
 }
+@media (max-width: 768px) {
+  .uteis-content .link-github {
+    width: 25px;
+    height: 25px;
+  }
+}
+@media (max-width: 768px) {
+  .uteis-content .link-github svg {
+    width: 25px;
+    height: 25px;
+  }
+}
 .uteis-content .link-github svg path {
   fill: var(--tertiary-dark-to-primary-light);
 }
@@ -168,6 +200,7 @@ body {
   justify-content: space-between;
 }
 
+/* */
 .my-body {
   height: max-content;
 }
@@ -203,13 +236,29 @@ body {
   z-index: 1;
   fill: #18181C;
 }
+@media (max-width: 768px) {
+  .darkThemeBtn label svg {
+    width: 10px;
+  }
+}
 .darkThemeBtn label svg.sun {
   width: 20px;
   opacity: 0;
   fill: #F3F3F3;
 }
+@media (max-width: 768px) {
+  .darkThemeBtn label svg.sun {
+    width: 13px;
+  }
+}
 .darkThemeBtn label svg.moon {
   opacity: 1;
+}
+@media (max-width: 768px) {
+  .darkThemeBtn label {
+    width: 25px;
+    height: 25px;
+  }
 }
 
 .darkThemeBtn input:checked + label {
@@ -242,6 +291,19 @@ body {
   cursor: pointer;
   margin-top: 30px;
 }
+@media (max-width: 768px) {
+  .btn {
+    width: max-content !important;
+    height: max-content !important;
+    padding: 5px !important;
+  }
+}
+@media (max-width: 768px) {
+  .btn svg {
+    width: 15px;
+    height: 15px;
+  }
+}
 
 .btn-abrir-modal {
   width: 50px;
@@ -273,12 +335,23 @@ body {
   padding: 0 10px;
   border-radius: 7px;
 }
+@media (max-width: 768px) {
+  .filtro-conteudo {
+    padding: 0 5px;
+  }
+}
 .filtro-conteudo:hover {
   transition: ease-out 1s;
   background-color: rgba(150, 152, 224, 0.1);
 }
 .filtro-conteudo svg {
   fill: var(--tertiary-dark-to-primary-light);
+}
+@media (max-width: 768px) {
+  .filtro-conteudo svg {
+    width: 16px;
+    height: 16px;
+  }
 }
 .filtro-conteudo svg path {
   fill: var(--tertiary-dark-to-primary-light);
@@ -313,6 +386,12 @@ body {
   transition: 0.3s all linear;
   cursor: pointer;
 }
+@media (max-width: 768px) {
+  .tarefa-content input[type=checkbox] {
+    width: 7px;
+    height: 7px;
+  }
+}
 .tarefa-content input[type=checkbox]:checked {
   background-color: var(--tertiary-dark-to-primary-light);
   border: none;
@@ -333,6 +412,12 @@ body {
 .favoritar-tarefa-content svg {
   fill: transparent;
 }
+@media (max-width: 768px) {
+  .favoritar-tarefa-content svg {
+    width: 10px;
+    height: 10px;
+  }
+}
 .favoritar-tarefa-content svg path {
   stroke: var(--tertiary-dark-to-primary-light);
 }
@@ -348,8 +433,16 @@ body {
   height: 30vh;
 }
 
-.modal-header label {
-  cursor: pointer;
+@media (max-width: 768px) {
+  .modal-header {
+    gap: 10px;
+  }
+}
+@media (max-width: 768px) {
+  .modal-header label {
+    align-self: center;
+    cursor: pointer;
+  }
 }
 .modal-header label input {
   border: none;
@@ -365,9 +458,23 @@ body {
 .modal-header label #modal-input--nome {
   max-width: 180px;
 }
+@media (max-width: 768px) {
+  .modal-header label #modal-input--nome {
+    max-width: 50%;
+    width: 50% !important;
+  }
+}
 
 .modal-header--nome svg {
+  margin-left: 20px;
   fill: var(--tertiary-dark-to-primary-light);
+}
+@media (max-width: 768px) {
+  .modal-header--nome svg {
+    width: 29px;
+    height: 29px;
+    margin-right: 10px;
+  }
 }
 
 .modal-header--svg-nome {
@@ -400,6 +507,11 @@ body {
 }
 .modal-body .modal-input--descricao::placeholder {
   color: var(--tertiary-dark-to-primary-light);
+}
+@media (max-width: 768px) {
+  .modal-body .modal-input--descricao {
+    font-size: 15px;
+  }
 }
 
 /* Estilizando o ícone do calendário */
@@ -462,6 +574,11 @@ input[type=date]::-webkit-datetime-edit-year-field {
   padding: 20px;
   box-shadow: 4px 4px 4px 2px rgba(0, 0, 0, 0.3);
 }
+@media (max-width: 768px) {
+  #modal {
+    height: 50%;
+  }
+}
 #modal form {
   width: 100%;
   height: 100%;
@@ -473,6 +590,11 @@ input[type=date]::-webkit-datetime-edit-year-field {
 .modal-header {
   display: flex;
   justify-content: space-between;
+}
+@media (max-width: 768px) {
+  .modal-header {
+    flex-direction: column;
+  }
 }
 .modal-header .modal-header--data, .modal-header .modal-header--nome {
   display: flex;

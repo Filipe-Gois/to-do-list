@@ -24,6 +24,8 @@
     //faz o modal centralizar
     transform: translate(-50%, -50%)
     z-index: 10
+    @include  mixins.responsivo(variables.$breakpoint-md)
+        height: 50%
 
     @include mixins.background-card-style()
 
@@ -37,6 +39,9 @@
 .modal-header
     display: flex
     justify-content: space-between
+
+    @include  mixins.responsivo(variables.$breakpoint-md)
+        flex-direction: column
 
     .modal-header--data,.modal-header--nome
         display: flex

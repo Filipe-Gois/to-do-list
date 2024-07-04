@@ -6,17 +6,26 @@
     color: var(--white-dark-to-secondary-light)
     font-weight: 600
 
+    @include responsivo(variables.$breakpoint-md)
+        font-size: variables.$font-title-size / 2
+
 @mixin sub-title-style()
     font-size: variables.$font-sub-title-size
     font-family: variables.$font-sub-title
     color: var(--secondary-dark-to-primary-light)
     font-weight: 500
 
+    @include responsivo(variables.$breakpoint-md)
+        font-size: variables.$font-sub-title-size / 2
+
 @mixin text-style()
     font-size: variables.$font-text-size
     font-family: variables.$font-text
     color: var(--tertiary-dark-to-primary-light)
     font-weight: 400
+
+    @include responsivo(variables.$breakpoint-md)
+        font-size: variables.$font-text-size / 2
 
 @mixin flex-center($direction: row, $align-items: center)
     display: flex
@@ -39,6 +48,11 @@
     background: variables.$linear-gradient
     align-self: flex-end
     cursor: pointer
+
+    @include responsivo(variables.$breakpoint-md)
+        width: max-content !important
+        height: max-content !important
+        padding: 5px !important
 
 @mixin input-style()
     border: none

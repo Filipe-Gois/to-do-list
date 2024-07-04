@@ -22,9 +22,24 @@
     .link-github
         width: 55px
         height: 55px
+        @include  mixins.responsivo(variables.$breakpoint-md)
+            width: 25px
+            height: 25px
+
         svg
+            @include  mixins.responsivo(variables.$breakpoint-md)
+                width: 25px
+                height: 25px
             path
                 fill: var(--tertiary-dark-to-primary-light)
 
 .filtros
     justify-content: space-between
+
+/*
+
+
+
+
+
+ */

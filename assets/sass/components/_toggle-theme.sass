@@ -35,14 +35,22 @@
         transition: 0.3s
         z-index: 1
         fill: variables.$background-color-v2-dark
+        @include  mixins.responsivo(variables.$breakpoint-md)
+            width: 10px
 
     & svg.sun
         width: 20px
         opacity: 0
         fill: variables.$background-color-v2-light
+        @include  mixins.responsivo(variables.$breakpoint-md)
+            width: 13px
 
     & svg.moon
         opacity: 1
+
+    @include  mixins.responsivo(variables.$breakpoint-md)
+        width: 25px
+        height: 25px
 
 .darkThemeBtn input:checked + label
     background: variables.$quaternary-color

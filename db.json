@@ -1,14 +1,6 @@
 {
   "tarefas": [
     {
-      "id": "0.32698151695302746",
-      "_nome": "Terminar To-Do List",
-      "_descricao": "Terminar To-Do List",
-      "_data": "2024-07-03",
-      "_favoritada": false,
-      "_completa": true
-    },
-    {
       "id": "0.30887340358336",
       "_nome": "Estudar TypeScript",
       "_descricao": "Estudar TypeScript",
@@ -18,9 +10,17 @@
     },
     {
       "id": "0.37784326825869785",
-      "_nome": "Treinar Bíceps",
+      "_nome": "Estutar react",
       "_descricao": "",
-      "_data": "2024-08-10",
+      "_data": "2024-06-30",
+      "_favoritada": false,
+      "_completa": false
+    },
+    {
+      "id": "0.550199238900853",
+      "_nome": "teste",
+      "_descricao": "testeasdasdasd",
+      "_data": "2024-07-03",
       "_favoritada": false,
       "_completa": false
     }

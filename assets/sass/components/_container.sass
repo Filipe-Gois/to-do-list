@@ -14,13 +14,16 @@
     justify-content: space-between
 
     @include  mixins.responsivo(variables.$breakpoint-md)
-        flex-direction: column-reverse
+        flex-direction: column
         align-items: center
         gap: 3%
 
 .filtros-content, .tarefas-content
     gap: 20px
     @include mixins.flex-center(column, stretch)
+
+    @include  mixins.responsivo(variables.$breakpoint-md)
+        gap: 10px
 
 .filtros-content-box, .tarefas-content-box
     display: flex
