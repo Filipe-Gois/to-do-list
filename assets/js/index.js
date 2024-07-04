@@ -158,14 +158,16 @@ const cadastrarTarefa = async () => {
     return;
   }
 
+  console.log(dataAtual());
+
   if (novaTarefa._data < dataAtual()) {
     alert("Informe uma data posterior ao dia de hoje!");
     return;
   }
 
   chamarApi(novaTarefa.id, novaTarefa, httpMethods.POST);
-  alert("Tarefa cadastrada com sucesso!");
   limparCampos();
+  alert("Tarefa cadastrada com sucesso!");
 };
 
 const excluirTarefa = async (id) => {
@@ -175,7 +177,7 @@ const excluirTarefa = async (id) => {
 };
 
 const atualizarTarefa = (id, dados) => {
-  // if (!validarCampos()) return;
+  if (!validarCampos()) return;
 
   const tarefas = arrayTarefas.filter((e) => e._nome === dados._nome);
 
@@ -184,20 +186,23 @@ const atualizarTarefa = (id, dados) => {
     return;
   }
 
-  if (dados._data < dataAtual()) {
+  if (dados._data < dataAtual() || dados._data === "") {
     alert("Informe uma data posterior ao dia de hoje!");
     return;
   }
 
   chamarApi(id, dados, httpMethods.PUT);
-  limparCampos();
   alert("Tarefa atualizada com sucesso!");
+  limparCampos();
 };
 
 // Obter data atual no formato YYYY-MM-DD
 const dataAtual = () => {
   const data = new Date();
-  return data.toISOString().split("T")[0];
+  const dia = String(data.getDate()).padStart(2, "0");
+  const mes = String(data.getMonth() + 1).padStart(2, "0"); // Mês começa do zero, por isso somamos 1
+  const ano = data.getFullYear();
+  return `${ano}-${mes}-${dia}`;
 };
 
 //valida se é ano bissexto
