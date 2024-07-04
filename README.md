@@ -69,14 +69,30 @@
 <h2>📸 Exemplos Visuais da Aplicação</h2>
 <div>
     <figure style="display: flex; flex-direction: column; align-items: center;">
-        <img src="./assets/screenshots/todo-list-main.jpeg" alt="Lista de Tarefas" style="width: 300px; height: 600px; object-fit: cover;">
+        <img src="./assets/images/readme/homeDark.png" alt="Home Page com tema dark" >
     </figure>
     <figure style="display: flex; flex-direction: column; align-items: center;">
-        <img src="./assets/screenshots/todo-list-edit.jpeg" alt="Editar Tarefa" style="width: 300px; height: 600px; object-fit: cover;">
+        <img src="./assets/images/readme/homeLight.png" alt="Home Page com tema light" >
+    </figure>
+     <figure style="display: flex; flex-direction: column; align-items: center;">
+        <img src="./assets/images/readme/modalAcoesTarefa.png" alt="Modal para exibir/atualizar/excluir tarefa." >
     </figure>
     <figure style="display: flex; flex-direction: column; align-items: center;">
-        <img src="./assets/screenshots/todo-list-filtered.jpeg" alt="Filtrar Tarefas" style="width: 300px; height: 600px; object-fit: cover;">
+        <img src="./assets/images/readme/modalCadastrarTarefa.png" alt="Modal para cadastrar tarefa." >
     </figure>
+    <figure style="display: flex; flex-direction: column; align-items: center;">
+        <img src="./assets/images/readme/tarefasDaSemana.png" alt="Filtrar Tarefas para esta semana." >
+    </figure>
+        <figure style="display: flex; flex-direction: column; align-items: center;">
+        <img src="./assets/images/readme/tarefasDaSemana.png" alt="Filtrar Tarefas para esta semana." >
+    </figure>
+    <figure style="display: flex; flex-direction: column; align-items: center;">
+        <img src="./assets/images/readme/homeMobile.png" alt="Home Page responsiva para mobile" >
+    </figure>
+    <figure style="display: flex; flex-direction: column; align-items: center;">
+        <img src="./assets/images/readme/modalMobile.png" alt="Modal responsivo para mobile." >
+    </figure>
+
 </div>
 
 </body>
